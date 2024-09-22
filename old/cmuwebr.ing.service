@@ -1,0 +1,14 @@
+[Unit]
+Description=CMU Webring
+After=network.target
+StartLimitIntervalSec=0
+
+[Install]
+WantedBy=default.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+WorkingDirectory=/home/ubuntu/cmuwebr.ing
+ExecStart=/home/ubuntu/cmuwebr.ing/run.sh

@@ -1,0 +1,35 @@
+server {
+	server_name cmuwebr.ing;
+	root /home/ubuntu/cmuwebr.ing;
+	index index.html;
+
+	listen [::]:443 ssl http2 ipv6only=on;
+	listen 443 ssl http2;
+	ssl_certificate    	/etc/letsencrypt/live/cmuwebr.ing/fullchain.pem;
+	ssl_certificate_key	/etc/letsencrypt/live/cmuwebr.ing/privkey.pem;
+	include /etc/letsencrypt/options-ssl-nginx.conf;
+	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+	# For cmuwebr.ing dynamic content
+	location / {
+		proxy_pass http://localhost:8000;
+	}
+
+	# For cmuwebr.ing static files
+	location /static/ {
+		alias /home/ubuntu/cmuwebr.ing/static/;
+		sendfile	on;
+	}
+}
+
+server {
+	listen [::]:80 default_server;
+	listen 80 default_server;
+
+	server_name cmuwebr.ing;
+	if ($host = 'cmuwebr.ing') {
+		return 301 https://$host$request_uri;
+	}
+
+	return 404;
+}
