@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="The Unofficial CMU Webring" />
+    <title>cmuwebr.ing</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/static/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/static/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/static/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/static/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <h1>The CMU Webring</h1>
+    <p>
+      This is a webring for a bunch of CMU alums who are all friends!!
+    </p>
+    <ul>
+      {% for site in sites.values() %}
+      <li>
+        {{ site['title'] }} -
+        <a href="{{ site['website'] }}">{{ site['website'] }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
